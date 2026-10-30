@@ -3,143 +3,140 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/.NET-8.0-512BD4?style=for-the-badge&logo=dotnet&logoColor=white" />
-  <img src="https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=c-sharp&logoColor=white" />
-  <img src="https://img.shields.io/badge/ASP.NET_Core-512BD4?style=for-the-badge&logo=dotnet&logoColor=white" />
-  <img src="https://img.shields.io/badge/SQL_Server-CC2927?style=for-the-badge&logo=microsoftsqlserver&logoColor=white" />
-  <img src="https://img.shields.io/badge/Entity_Framework_Core-512BD4?style=for-the-badge&logo=nuget&logoColor=white" />
-  <img src="https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=swagger&logoColor=black" />
+  <img src="https://img.shields.io/badge/C%23-Backend-239120?style=for-the-badge&logo=csharp&logoColor=white" />
+  <img src="https://img.shields.io/badge/ASP.NET_Core-Web_API-512BD4?style=for-the-badge&logo=dotnet&logoColor=white" />
+  <img src="https://img.shields.io/badge/SQL_Server-Database-CC2927?style=for-the-badge&logo=microsoftsqlserver&logoColor=white" />
+  <img src="https://img.shields.io/badge/Entity_Framework_Core-ORM-68217A?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Swagger-API_Documentation-85EA2D?style=for-the-badge&logo=swagger&logoColor=black" />
 </p>
 
 <p align="center">
-  <strong>API REST para la gestión y emisión de pólizas de seguros de automóviles</strong>
+  **API REST para la gestión de seguros de automóviles**
+  <br />
+  Desarrollada con ASP.NET Core 8, Entity Framework Core y SQL Server.
 </p>
 
 ---
 
-## 📑 Contenido
+## 📌 Descripción del proyecto
 
-1. [Descripción](#descripción)
-2. [Tecnologías](#tecnologías)
-3. [Estructura del proyecto](#estructura-del-proyecto)
-4. [Requisitos](#requisitos)
-5. [Configuración](#configuración)
-6. [Base de datos](#base-de-datos)
-7. [Ejecución del proyecto](#ejecución-del-proyecto)
-8. [Endpoints](#endpoints)
-9. [Ejemplo de emisión de póliza](#ejemplo-de-emisión-de-póliza)
-10. [Reglas de negocio](#reglas-de-negocio)
-11. [Arquitectura y modelo de datos](#arquitectura-y-modelo-de-datos)
-12. [Solución de problemas](#solución-de-problemas)
-13. [Autor](#autor)
+**Seguros Auto API** es una interfaz de programación de aplicaciones (API REST) desarrollada en ASP.NET Core 8, orientada a la gestión de un sistema de seguros de automóviles.
+
+El proyecto permite administrar clientes, vehículos, coberturas y pólizas mediante endpoints HTTP, utilizando SQL Server como sistema gestor de bases de datos y Entity Framework Core como herramienta de acceso a datos.
+
+La API cuenta con una arquitectura organizada por responsabilidades, facilitando el mantenimiento, la escalabilidad y la separación de la lógica de negocio.
 
 ---
 
-## 🚀 Descripción
-
-**Seguros Auto API** es un servicio REST desarrollado para gestionar la emisión de pólizas de seguros de automóviles.
-
-El sistema permite registrar clientes, administrar coberturas, registrar vehículos y emitir pólizas relacionando la información del cliente, el vehículo y las coberturas seleccionadas.
-
-La aplicación está organizada mediante una arquitectura por capas, separando las responsabilidades de los controladores, servicios y repositorios para facilitar el mantenimiento y la evolución del sistema.
-
----
-
-## 🧰 Tecnologías
+## 🛠️ Tecnologías utilizadas
 
 | Tecnología | Descripción |
 |---|---|
-| C# | Lenguaje de programación. |
-| ASP.NET Core .NET 8 | Framework para desarrollar la API REST. |
-| Entity Framework Core | ORM para el acceso y gestión de datos. |
-| SQL Server | Sistema gestor de base de datos relacional. |
-| Swagger / OpenAPI | Documentación y pruebas de endpoints. |
-| Visual Studio 2022 | Entorno de desarrollo. |
+| C# | Lenguaje de programación |
+| .NET 8 | Plataforma de desarrollo |
+| ASP.NET Core Web API | Desarrollo de servicios REST |
+| Entity Framework Core | ORM para acceso a datos |
+| SQL Server | Sistema gestor de bases de datos |
+| Swagger | Documentación y pruebas de endpoints |
+| Visual Studio | Entorno de desarrollo |
 
 ---
 
-## 📁 Estructura del proyecto
+## 📂 Estructura del proyecto
 
 ```text
 SegurosAuto/
-├── SegurosAuto.sln
-├── README.md
-├── database/
-│   └── 01_crear_base_de_datos.sql
+│
+├── Script de base de datos.sql
+│
 └── SegurosAuto.Api/
+    │
     ├── Controllers/
+    │   ├── ClientesController.cs
+    │   ├── VehiculosController.cs
+    │   ├── CoberturasController.cs
+    │   └── PolizasController.cs
+    │
     ├── Data/
-    ├── Dtos/
-    ├── Exceptions/
-    ├── Middleware/
-    ├── Migrations/
+    │   └── ApplicationDbContext.cs
+    │
     ├── Models/
-    ├── Repositories/
+    │
+    ├── DTOs/
+    │
     ├── Services/
-    ├── Properties/
+    │
+    ├── Repositories/
+    │
     ├── appsettings.json
-    └── Program.cs
-```
-
-### 🗂️ Descripción de las carpetas
-
-| Carpeta | Responsabilidad |
-|---|---|
-| `Controllers/` | Recibe las solicitudes HTTP y devuelve las respuestas de la API. |
-| `Services/` | Contiene la lógica de negocio y las validaciones del sistema. |
-| `Repositories/` | Gestiona el acceso a la base de datos mediante Entity Framework Core. |
-| `Models/` | Contiene las entidades que representan las tablas de la base de datos. |
-| `Data/` | Contiene `AppDbContext`, la configuración de las entidades y los datos iniciales. |
-| `Dtos/` | Define los objetos de transferencia de datos para las solicitudes y respuestas JSON. |
-| `Exceptions/` | Contiene las excepciones personalizadas de la aplicación. |
-| `Middleware/` | Centraliza el manejo de errores y las respuestas HTTP. |
-| `Migrations/` | Contiene las migraciones de Entity Framework Core. |
-
----
-
-## ⚙️ Requisitos
-
-Para ejecutar el proyecto se necesita:
-
-- .NET 8 SDK.
-- SQL Server.
-- Visual Studio 2022.
-- SQL Server Management Studio (SSMS).
-- Entity Framework Core Tools, versión `8.0.10`.
-
-### 🔎 Verificar .NET
-
-```powershell
-dotnet --version
-```
-
-La versión instalada debe comenzar con `8.`.
-
-### 📦 Instalar Entity Framework Core Tools
-
-```powershell
-dotnet tool install --global dotnet-ef --version 8.0.10
-```
-
-Verificar la instalación:
-
-```powershell
-dotnet ef --version
+    ├── Program.cs
+    └── SegurosAuto.Api.csproj
 ```
 
 ---
 
-## 🔌 Configuración
+## 🗄️ Base de datos
 
-La conexión a SQL Server está definida en:
+El proyecto utiliza **SQL Server** y una base de datos denominada:
 
-`SegurosAuto.Api/appsettings.json`
+```sql
+SegurosAutoDb
+```
 
-Configuración utilizada:
+La estructura de la base de datos se encuentra incluida en el repositorio mediante el archivo:
+
+`Script de base de datos.sql`
+
+### 📥 Creación de la base de datos
+
+Para preparar el entorno de ejecución, es necesario crear la base de datos antes de iniciar la API.
+
+1. Descargar o clonar el repositorio.
+2. Localizar el archivo `Script de base de datos.sql` en la raíz del proyecto.
+3. Abrir **SQL Server Management Studio (SSMS)**.
+4. Conectarse a la instancia de SQL Server que se utilizará.
+5. Abrir el archivo SQL desde SSMS.
+6. Ejecutar el script mediante el botón **Execute** o la tecla `F5`.
+
+Al finalizar, se creará la base de datos `SegurosAutoDb` con las tablas y relaciones necesarias para el funcionamiento de la API.
+
+---
+
+## ⚙️ Configuración del proyecto
+
+Antes de ejecutar la API, es necesario configurar la conexión con SQL Server.
+
+### 1. Requisitos previos
+
+Verificar que se encuentren instalados los siguientes componentes:
+
+- [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
+- [SQL Server](https://www.microsoft.com/sql-server/sql-server-downloads)
+- [SQL Server Management Studio](https://learn.microsoft.com/sql/ssms/download-sql-server-management-studio-ssms)
+- [Visual Studio](https://visualstudio.microsoft.com/) o un editor compatible con .NET.
+
+### 2. Clonar el repositorio
+
+```bash
+git clone URL_DEL_REPOSITORIO
+```
+
+Ingresar al directorio del proyecto:
+
+```bash
+cd SegurosAuto
+```
+
+### 3. Configurar la cadena de conexión
+
+Abrir el archivo `appsettings.json`, ubicado dentro del proyecto `SegurosAuto.Api`.
+
+Localizar la sección `ConnectionStrings` y configurar la conexión a SQL Server:
 
 ```json
 {
   "ConnectionStrings": {
-    "DefaultConnection": "Server=DESKTOP-CAKRKLJ;Database=SegurosAutoDb;Integrated Security=True;Encrypt=False;TrustServerCertificate=True"
+    "DefaultConnection": "Server=TU_SERVIDOR;Database=SegurosAutoDb;Integrated Security=True;Encrypt=False;TrustServerCertificate=True"
   },
   "Logging": {
     "LogLevel": {
@@ -151,302 +148,140 @@ Configuración utilizada:
 }
 ```
 
-La conexión utiliza:
+**Importante:** Reemplazar `TU_SERVIDOR` por el nombre de la instancia de SQL Server utilizada en el entorno de desarrollo.
 
-- **Servidor:** `DESKTOP-CAKRKLJ`
-- **Base de datos:** `SegurosAutoDb`
-- **Autenticación:** Windows Authentication.
-- **Cifrado:** desactivado mediante `Encrypt=False`.
-- **Certificado:** `TrustServerCertificate=True`.
+Por ejemplo, dependiendo de la instalación, puede ser el nombre de una instancia local, una instancia de SQL Server Express o un servidor remoto.
+
+La cadena de conexión debe corresponder con la instancia donde se ejecutó previamente el script de base de datos.
 
 ---
 
-## 🗄️ Base de datos
+## 📦 Restauración de dependencias
 
-El proyecto utiliza **Entity Framework Core Code First**, mediante migraciones para crear y actualizar la estructura de la base de datos.
+Abrir una terminal en la carpeta del proyecto `SegurosAuto.Api` y ejecutar:
 
-Desde PowerShell, ubicado en la carpeta principal del proyecto, ejecuta:
-
-```powershell
-dotnet ef database update --project SegurosAuto.Api
+```bash
+dotnet restore
 ```
 
-Este comando aplica las migraciones y crea o actualiza la base de datos `SegurosAutoDb`.
-
-### 🔍 Comprobar la base de datos
-
-En SQL Server Management Studio, conéctate al servidor `DESKTOP-CAKRKLJ`, selecciona la base de datos `SegurosAutoDb` y ejecuta:
-
-```sql
-SELECT * FROM Clientes;
-SELECT * FROM Vehiculos;
-SELECT * FROM Coberturas;
-SELECT * FROM Polizas;
-SELECT * FROM PolizaCoberturas;
-```
+Este comando descarga y restaura los paquetes NuGet necesarios para compilar y ejecutar la aplicación.
 
 ---
 
-## ▶️ Ejecución del proyecto
+## ▶️ Ejecución de la API
 
-Desde PowerShell, en la carpeta principal del proyecto, ejecuta:
+Desde la terminal, dentro del directorio `SegurosAuto.Api`, ejecutar:
 
-```powershell
-dotnet run --project SegurosAuto.Api --launch-profile https
+```bash
+dotnet run
 ```
 
-Cuando la API inicie correctamente, la consola mostrará las direcciones locales de ejecución.
+Una vez iniciada correctamente, la API estará disponible en las direcciones que indique la consola.
 
-Abre la dirección HTTPS y agrega `/swagger`.
+Si se utiliza Visual Studio, también es posible ejecutar el proyecto mediante el botón **Start** o `F5`.
 
-Ejemplo:
+---
+
+## 📖 Documentación y pruebas con Swagger
+
+El proyecto incorpora Swagger para documentar y probar los endpoints de la API de manera interactiva.
+
+Una vez iniciada la aplicación, abrir en el navegador la dirección de Swagger indicada por el entorno de ejecución. Generalmente:
 
 ```text
-https://localhost:7110/swagger
+https://localhost:PUERTO/swagger
 ```
 
-El puerto corresponde al configurado para la ejecución del proyecto.
+Desde esta interfaz es posible:
 
-### 💻 Ejecución desde Visual Studio 2022
-
-1. Abre `SegurosAuto.sln`.
-2. Selecciona `SegurosAuto.Api` como proyecto de inicio.
-3. Selecciona el perfil `https`.
-4. Presiona **F5** para iniciar la aplicación.
+- Consultar los endpoints disponibles.
+- Visualizar los métodos HTTP.
+- Revisar los parámetros y modelos de datos.
+- Enviar solicitudes directamente a la API.
+- Verificar las respuestas y códigos de estado HTTP.
 
 ---
 
-## 🌐 Endpoints
+## 🔗 Endpoints principales
 
-La API dispone de endpoints para administrar clientes, coberturas y pólizas.
-
-### 👤 Clientes
-
-| Método | Endpoint | Descripción |
-|---|---|---|
-| GET | `/api/clientes` | Obtiene todos los clientes. |
-| GET | `/api/clientes/{id}` | Obtiene un cliente por su identificador. |
-| POST | `/api/clientes` | Registra un nuevo cliente. |
-| PUT | `/api/clientes/{id}` | Actualiza la información de un cliente. |
-| DELETE | `/api/clientes/{id}` | Elimina un cliente que no tenga pólizas asociadas. |
-
-### 🛡️ Coberturas
-
-| Método | Endpoint | Descripción |
-|---|---|---|
-| GET | `/api/coberturas` | Obtiene todas las coberturas. |
-| GET | `/api/coberturas/{id}` | Obtiene una cobertura por su identificador. |
-| POST | `/api/coberturas` | Registra una nueva cobertura. |
-| PUT | `/api/coberturas/{id}` | Actualiza una cobertura. |
-| DELETE | `/api/coberturas/{id}` | Elimina una cobertura que no esté asociada a pólizas. |
-
-### 📄 Pólizas
-
-| Método | Endpoint | Descripción |
-|---|---|---|
-| POST | `/api/polizas/emitir` | Emite una nueva póliza de automóvil. |
-| GET | `/api/polizas/{id}` | Consulta el detalle de una póliza. |
-| GET | `/api/polizas` | Obtiene el historial de pólizas emitidas. |
-
----
-
-## 🧾 Ejemplo de emisión de póliza
-
-### 📤 Solicitud HTTP
-
-```http
-POST /api/polizas/emitir
-Content-Type: application/json
-```
-
-### 📨 Cuerpo JSON
-
-```json
-{
-  "clienteId": 1,
-  "vehiculo": {
-    "placa": "M123456",
-    "marca": "Toyota",
-    "modelo": "Corolla",
-    "anio": 2022,
-    "valorComercial": 18500.00
-  },
-  "coberturaIds": [1, 2, 3]
-}
-```
-
-### 📥 Respuesta esperada
-
-```json
-{
-  "id": 1,
-  "numeroPoliza": "POL-2026-000001",
-  "fechaEmision": "2026-10-30T15:30:00Z",
-  "sumaAsegurada": 18500.00,
-  "primaTotal": 6000.00,
-  "cliente": {
-    "id": 1,
-    "nombre": "Juan Pérez",
-    "identificacion": "001-010190-0001A",
-    "correo": "juan.perez@correo.com"
-  },
-  "vehiculo": {
-    "id": 1,
-    "placa": "M123456",
-    "marca": "Toyota",
-    "modelo": "Corolla",
-    "anio": 2022,
-    "valorComercial": 18500.00
-  },
-  "coberturas": [
-    {
-      "id": 1,
-      "nombre": "Responsabilidad Civil",
-      "montoCobertura": 1500.00
-    },
-    {
-      "id": 2,
-      "nombre": "Choque",
-      "montoCobertura": 2500.00
-    },
-    {
-      "id": 3,
-      "nombre": "Robo",
-      "montoCobertura": 2000.00
-    }
-  ]
-}
-```
-
----
-
-## 📌 Reglas de negocio
-
-- La prima total se calcula en el servidor sumando los montos de las coberturas seleccionadas.
-- La suma asegurada corresponde al valor comercial del vehículo.
-- El número de póliza se genera automáticamente con el formato `POL-AAAA-000001`.
-- Si la placa del vehículo ya existe, se reutiliza el registro y se actualizan sus datos; si no existe, se registra un vehículo nuevo.
-- Los identificadores de coberturas repetidos se consideran una sola vez.
-- El cliente y las coberturas seleccionadas deben existir.
-- El año del vehículo no puede ser posterior al año actual.
-- La emisión guarda la póliza, el vehículo y sus coberturas dentro de una misma transacción.
-- El monto de cada cobertura queda registrado en `PolizaCoberturas` al momento de emitir la póliza.
-- Los cambios posteriores en el catálogo de coberturas no modifican las pólizas emitidas.
-- No se permite eliminar clientes que tengan pólizas asociadas.
-- No se permite eliminar coberturas que estén asociadas a pólizas emitidas.
-
-### 📊 Códigos de respuesta HTTP
-
-| Código | Descripción |
+| Módulo | Descripción |
 |---|---|
-| `200 OK` | Solicitud procesada correctamente. |
-| `201 Created` | Recurso creado correctamente. |
-| `204 No Content` | Operación completada sin contenido de respuesta. |
-| `400 Bad Request` | Error de validación o regla de negocio. |
-| `404 Not Found` | Recurso no encontrado. |
-| `500 Internal Server Error` | Error inesperado en el servidor. |
+| Clientes | Administración de clientes |
+| Vehículos | Administración de vehículos |
+| Coberturas | Administración de coberturas |
+| Pólizas | Gestión de pólizas de seguros |
 
-Los errores utilizan el formato estándar `ProblemDetails`.
-
-Ejemplo:
-
-```json
-{
-  "title": "Recurso no encontrado",
-  "status": 404,
-  "detail": "El cliente con Id 999 no existe."
-}
-```
+Los endpoints específicos pueden consultarse desde la documentación interactiva de Swagger.
 
 ---
 
-## 🏗️ Arquitectura y modelo de datos
+## 🧩 Modelo de datos
 
-### 🔄 Arquitectura por capas
+La base de datos contempla las siguientes entidades principales:
 
-```text
-             Cliente HTTP
-                  |
-                  v
-             Controller
-                  |
-                  v
-               Service
-                  |
-                  v
-             Repository
-                  |
-                  v
-              AppDbContext
-                  |
-                  v
-              SQL Server
-```
-
-Cada capa tiene una responsabilidad específica:
-
-- **Controller:** recibe las solicitudes HTTP y coordina las respuestas.
-- **Service:** ejecuta las reglas de negocio y validaciones.
-- **Repository:** realiza las operaciones de acceso a datos.
-- **AppDbContext:** administra las entidades y su relación con la base de datos.
-- **SQL Server:** almacena la información del sistema.
-
-### 🔗 Relaciones del modelo de datos
-
-```text
-Clientes
-   |
-   | 1:N
-   |
-Polizas
-   |
-   | N:N
-   |
-PolizaCoberturas
-   |
-   | N:1
-   |
-Coberturas
-
-
-Vehiculos
-   |
-   | 1:N
-   |
-Polizas
-```
-
-### 🗃️ Descripción de las tablas
-
-| Tabla | Campos principales | Descripción |
-|---|---|---|
-| `Clientes` | `Id`, `Nombre`, `Identificacion`, `Correo` | Información de los clientes. |
-| `Vehiculos` | `Id`, `Placa`, `Marca`, `Modelo`, `Anio`, `ValorComercial` | Información de los vehículos asegurados. |
-| `Coberturas` | `Id`, `Nombre`, `MontoCobertura` | Catálogo de coberturas disponibles. |
-| `Polizas` | `Id`, `NumeroPoliza`, `ClienteId`, `VehiculoId`, `FechaEmision`, `SumaAsegurada`, `PrimaTotal` | Información de las pólizas emitidas. |
-| `PolizaCoberturas` | `PolizaId`, `CoberturaId`, `MontoCobertura` | Relación entre pólizas y coberturas. |
-
-La tabla `PolizaCoberturas` implementa la relación muchos a muchos entre `Polizas` y `Coberturas`. Su clave primaria compuesta por `PolizaId` y `CoberturaId` evita registrar dos veces la misma cobertura dentro de una póliza.
-
----
-
-## 🧩 Solución de problemas
-
-| Problema | Solución |
+| Tabla | Descripción |
 |---|---|
-| `dotnet` no se reconoce como comando. | Verifica que .NET 8 SDK esté instalado y abre una nueva terminal. |
-| `dotnet ef` no se reconoce. | Instala Entity Framework Core Tools versión `8.0.10`. |
-| Error de conexión con SQL Server. | Comprueba que el servidor `DESKTOP-CAKRKLJ` esté iniciado y que la cadena de conexión sea correcta. |
-| `Login failed for user`. | Verifica la autenticación de Windows y los permisos del usuario. |
-| No se puede abrir `SegurosAutoDb`. | Ejecuta `dotnet ef database update --project SegurosAuto.Api`. |
-| `Invalid object name`. | Aplica las migraciones para crear las tablas. |
-| Swagger no muestra la documentación. | Compila el proyecto con `dotnet build SegurosAuto.Api` y vuelve a ejecutarlo. |
-| El puerto ya está en uso. | Detén la otra instancia de la API o revisa `Properties/launchSettings.json`. |
-| Advertencia del certificado HTTPS. | Ejecuta `dotnet dev-certs https --trust`. |
+| Clientes | Información de los clientes |
+| Vehiculos | Información de los vehículos asegurados |
+| Coberturas | Tipos de cobertura disponibles |
+| Polizas | Información de las pólizas emitidas |
+| PolizaCoberturas | Relación entre pólizas y coberturas |
+
+### Relaciones principales
+
+- Un cliente puede tener varias pólizas.
+- Un vehículo puede estar asociado a varias pólizas.
+- Una póliza puede incluir varias coberturas.
+- Una cobertura puede estar asociada a varias pólizas.
+
+La relación entre pólizas y coberturas se implementa mediante la tabla intermedia `PolizaCoberturas`.
 
 ---
 
-## ✍️ Autor
+## 🚀 Flujo de instalación
 
-**Byron Salvador Picado Bermúdez**  
-📧 `picadobyron495@gmail.com`
+Para poner en funcionamiento el proyecto desde cero, seguir este orden:
+
+```text
+        DESCARGAR REPOSITORIO
+                 │
+                 ▼
+       EJECUTAR SCRIPT SQL
+                 │
+                 ▼
+       CREAR BASE DE DATOS
+          SegurosAutoDb
+                 │
+                 ▼
+      CONFIGURAR APPSETTINGS
+       Cadena de conexión
+                 │
+                 ▼
+       RESTAURAR DEPENDENCIAS
+           dotnet restore
+                 │
+                 ▼
+          EJECUTAR API
+             dotnet run
+                 │
+                 ▼
+        ABRIR DOCUMENTACIÓN
+              SWAGGER
+                 │
+                 ▼
+         PROBAR ENDPOINTS
+```
+
+---
+
+## 👨‍💻 Autor
+
+**Desarrollado como proyecto de gestión de seguros de automóviles.**
+
+---
+
+<p align="center">
+  <strong>Seguros Auto API</strong>
+  <br />
+  <sub>Desarrollado con .NET 8 · ASP.NET Core · SQL Server</sub>
+</p>
