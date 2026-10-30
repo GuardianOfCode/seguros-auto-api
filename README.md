@@ -114,7 +114,7 @@ dotnet ef --version
 **Opción A: con Git**
 
 ```powershell
-git clone https://github.com/TU_USUARIO/seguros-auto-api.git
+git clone https://github.com/GuardianOfCode/seguros-auto-api.git
 cd seguros-auto-api
 ```
 
