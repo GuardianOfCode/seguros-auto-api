@@ -1,0 +1,1739 @@
+{
+  "info": {
+    "_postman_id": "e9740f9a-25a4-4ca5-9ff7-86482862398c",
+    "name": "Seguros LAFISE — API de Emisión de Seguros de Auto",
+    "description": "API REST para el módulo de emisión de pólizas de automóviles.\n\n**Flujo recomendado:**\n1. Consultar clientes (`GET /api/clientes`) y coberturas (`GET /api/coberturas`).\n2. Emitir la póliza (`POST /api/polizas/emitir`). La prima se calcula en el servidor.\n3. Consultar el detalle (`GET /api/polizas/{id}`) o el historial (`GET /api/polizas`).\n\n**Errores:** se devuelven en formato `ProblemDetails` con códigos 400, 404 y 500.\n\nContact Support:\n Name: Tu Nombre\n Email: tu.correo@correo.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "37878062"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "clientes",
+          "item": [
+            {
+              "name": "{id}",
+              "item": [
+                {
+                  "name": "Obtiene un cliente por su Id.",
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/clientes/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "clientes",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "2853",
+                          "description": "Identificador del cliente."
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "Cliente encontrado.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/clientes/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "clientes",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "2853",
+                              "description": "Identificador del cliente."
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"id\": 1,\n  \"nombre\": \"Juan Pérez\",\n  \"identificacion\": \"001-010190-0001A\",\n  \"correo\": \"juan.perez@correo.com\"\n}"
+                    },
+                    {
+                      "name": "No existe un cliente con ese Id.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/clientes/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "clientes",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "2853",
+                              "description": "Identificador del cliente."
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 6857,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"key_0\": 3036.275652552409,\n  \"key_1\": 190.97379420138782\n}"
+                    }
+                  ]
+                },
+                {
+                  "name": "Actualiza los datos de un cliente existente.",
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"correo\": \"carlos.mendoza@correo.com\",\n  \"identificacion\": \"001-200380-0003C\",\n  \"nombre\": \"Carlos Mendoza\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/clientes/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "clientes",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "2853",
+                          "description": "Identificador del cliente a actualizar."
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "Cliente actualizado.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"correo\": \"carlos.mendoza@correo.com\",\n  \"identificacion\": \"001-200380-0003C\",\n  \"nombre\": \"Carlos Mendoza\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/clientes/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "clientes",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "2853",
+                              "description": "Identificador del cliente a actualizar."
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"id\": 1,\n  \"nombre\": \"Juan Pérez\",\n  \"identificacion\": \"001-010190-0001A\",\n  \"correo\": \"juan.perez@correo.com\"\n}"
+                    },
+                    {
+                      "name": "Datos inválidos o la identificación pertenece a otro cliente.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"correo\": \"carlos.mendoza@correo.com\",\n  \"identificacion\": \"001-200380-0003C\",\n  \"nombre\": \"Carlos Mendoza\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/clientes/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "clientes",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "2853",
+                              "description": "Identificador del cliente a actualizar."
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 6857,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"key_0\": 3036.275652552409,\n  \"key_1\": 190.97379420138782\n}"
+                    },
+                    {
+                      "name": "No existe un cliente con ese Id.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"correo\": \"carlos.mendoza@correo.com\",\n  \"identificacion\": \"001-200380-0003C\",\n  \"nombre\": \"Carlos Mendoza\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/clientes/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "clientes",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "2853",
+                              "description": "Identificador del cliente a actualizar."
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 6857,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"key_0\": 3036.275652552409,\n  \"key_1\": 190.97379420138782\n}"
+                    }
+                  ]
+                },
+                {
+                  "name": "Elimina un cliente.",
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/clientes/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "clientes",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "2853",
+                          "description": "Identificador del cliente a eliminar."
+                        }
+                      ]
+                    },
+                    "description": "No se puede eliminar un cliente que ya tenga pólizas emitidas."
+                  },
+                  "response": [
+                    {
+                      "name": "Cliente eliminado.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/clientes/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "clientes",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "2853",
+                              "description": "Identificador del cliente a eliminar."
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "body": ""
+                    },
+                    {
+                      "name": "El cliente tiene pólizas emitidas.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/clientes/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "clientes",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "2853",
+                              "description": "Identificador del cliente a eliminar."
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 6857,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"key_0\": 3036.275652552409,\n  \"key_1\": 190.97379420138782\n}"
+                    },
+                    {
+                      "name": "No existe un cliente con ese Id.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/clientes/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "clientes",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "2853",
+                              "description": "Identificador del cliente a eliminar."
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 6857,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"key_0\": 3036.275652552409,\n  \"key_1\": 190.97379420138782\n}"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Lista todos los clientes.",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/clientes",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "clientes"
+                  ]
+                },
+                "description": "Catálogo de clientes ordenado alfabéticamente por nombre."
+              },
+              "response": [
+                {
+                  "name": "Lista de clientes (puede estar vacía).",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/clientes",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "clientes"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "[\n  {\n    \"id\": 1,\n    \"nombre\": \"Juan Pérez\",\n    \"identificacion\": \"001-010190-0001A\",\n    \"correo\": \"juan.perez@correo.com\"\n  },\n  {\n    \"id\": 1,\n    \"nombre\": \"Juan Pérez\",\n    \"identificacion\": \"001-010190-0001A\",\n    \"correo\": \"juan.perez@correo.com\"\n  }\n]"
+                }
+              ]
+            },
+            {
+              "name": "Registra un cliente nuevo.",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"correo\": \"carlos.mendoza@correo.com\",\n  \"identificacion\": \"001-200380-0003C\",\n  \"nombre\": \"Carlos Mendoza\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/clientes",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "clientes"
+                  ]
+                },
+                "description": "Ejemplo de solicitud:\r\n            \r\n    POST /api/clientes\r\n    {\r\n       \"nombre\": \"Carlos Mendoza\",\r\n       \"identificacion\": \"001-200380-0003C\",\r\n       \"correo\": \"carlos.mendoza@correo.com\"\r\n    }\r\n            \r\nLa identificación debe ser única."
+              },
+              "response": [
+                {
+                  "name": "Cliente creado. El encabezado Location apunta al nuevo recurso.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"correo\": \"carlos.mendoza@correo.com\",\n  \"identificacion\": \"001-200380-0003C\",\n  \"nombre\": \"Carlos Mendoza\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/clientes",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "clientes"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"id\": 1,\n  \"nombre\": \"Juan Pérez\",\n  \"identificacion\": \"001-010190-0001A\",\n  \"correo\": \"juan.perez@correo.com\"\n}"
+                },
+                {
+                  "name": "Datos inválidos o identificación ya registrada.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"correo\": \"carlos.mendoza@correo.com\",\n  \"identificacion\": \"001-200380-0003C\",\n  \"nombre\": \"Carlos Mendoza\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/clientes",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "clientes"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 6857,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"key_0\": 3036.275652552409,\n  \"key_1\": 190.97379420138782\n}"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "coberturas",
+          "item": [
+            {
+              "name": "{id}",
+              "item": [
+                {
+                  "name": "Obtiene una cobertura por su Id.",
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/coberturas/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "coberturas",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "2853",
+                          "description": "Identificador de la cobertura."
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "Cobertura encontrada.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/coberturas/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "coberturas",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "2853",
+                              "description": "Identificador de la cobertura."
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"id\": 1,\n  \"nombre\": \"Responsabilidad Civil\",\n  \"montoCobertura\": 1500\n}"
+                    },
+                    {
+                      "name": "No existe una cobertura con ese Id.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/coberturas/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "coberturas",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "2853",
+                              "description": "Identificador de la cobertura."
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 6857,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"key_0\": 3036.275652552409,\n  \"key_1\": 190.97379420138782\n}"
+                    }
+                  ]
+                },
+                {
+                  "name": "Actualiza una cobertura existente.",
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"nombre\": \"Cristales\",\n  \"montoCobertura\": 400\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/coberturas/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "coberturas",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "2853",
+                          "description": "Identificador de la cobertura."
+                        }
+                      ]
+                    },
+                    "description": "Las pólizas ya emitidas NO se ven afectadas: cada póliza conserva el monto que\r\ntenía la cobertura al momento de emitirse."
+                  },
+                  "response": [
+                    {
+                      "name": "Cobertura actualizada.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"nombre\": \"Cristales\",\n  \"montoCobertura\": 400\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/coberturas/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "coberturas",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "2853",
+                              "description": "Identificador de la cobertura."
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"id\": 1,\n  \"nombre\": \"Responsabilidad Civil\",\n  \"montoCobertura\": 1500\n}"
+                    },
+                    {
+                      "name": "Datos inválidos.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"nombre\": \"Cristales\",\n  \"montoCobertura\": 400\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/coberturas/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "coberturas",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "2853",
+                              "description": "Identificador de la cobertura."
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 6857,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"key_0\": 3036.275652552409,\n  \"key_1\": 190.97379420138782\n}"
+                    },
+                    {
+                      "name": "No existe una cobertura con ese Id.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"nombre\": \"Cristales\",\n  \"montoCobertura\": 400\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/coberturas/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "coberturas",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "2853",
+                              "description": "Identificador de la cobertura."
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 6857,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"key_0\": 3036.275652552409,\n  \"key_1\": 190.97379420138782\n}"
+                    }
+                  ]
+                },
+                {
+                  "name": "Elimina una cobertura del catálogo.",
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/coberturas/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "coberturas",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "2853",
+                          "description": "Identificador de la cobertura."
+                        }
+                      ]
+                    },
+                    "description": "No se puede eliminar una cobertura que ya esté incluida en pólizas emitidas."
+                  },
+                  "response": [
+                    {
+                      "name": "Cobertura eliminada.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/coberturas/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "coberturas",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "2853",
+                              "description": "Identificador de la cobertura."
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "body": ""
+                    },
+                    {
+                      "name": "La cobertura está en pólizas emitidas.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/coberturas/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "coberturas",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "2853",
+                              "description": "Identificador de la cobertura."
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 6857,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"key_0\": 3036.275652552409,\n  \"key_1\": 190.97379420138782\n}"
+                    },
+                    {
+                      "name": "No existe una cobertura con ese Id.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/coberturas/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "coberturas",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "2853",
+                              "description": "Identificador de la cobertura."
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 6857,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"key_0\": 3036.275652552409,\n  \"key_1\": 190.97379420138782\n}"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Lista todas las coberturas disponibles.",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/coberturas",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "coberturas"
+                  ]
+                },
+                "description": "Se usa para que el ejecutivo elija las coberturas al emitir una póliza."
+              },
+              "response": [
+                {
+                  "name": "Lista de coberturas.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/coberturas",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "coberturas"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "[\n  {\n    \"id\": 1,\n    \"nombre\": \"Responsabilidad Civil\",\n    \"montoCobertura\": 1500\n  },\n  {\n    \"id\": 1,\n    \"nombre\": \"Responsabilidad Civil\",\n    \"montoCobertura\": 1500\n  }\n]"
+                }
+              ]
+            },
+            {
+              "name": "Crea una cobertura nueva en el catálogo.",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"nombre\": \"Cristales\",\n  \"montoCobertura\": 400\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/coberturas",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "coberturas"
+                  ]
+                },
+                "description": "Ejemplo de solicitud:\r\n            \r\n    POST /api/coberturas\r\n    {\r\n       \"nombre\": \"Cristales\",\r\n       \"montoCobertura\": 400.00\r\n    }"
+              },
+              "response": [
+                {
+                  "name": "Cobertura creada.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"nombre\": \"Cristales\",\n  \"montoCobertura\": 400\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/coberturas",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "coberturas"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"id\": 1,\n  \"nombre\": \"Responsabilidad Civil\",\n  \"montoCobertura\": 1500\n}"
+                },
+                {
+                  "name": "Datos inválidos (nombre vacío o monto menor o igual a cero).",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"nombre\": \"Cristales\",\n  \"montoCobertura\": 400\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/coberturas",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "coberturas"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 6857,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"key_0\": 3036.275652552409,\n  \"key_1\": 190.97379420138782\n}"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "polizas",
+          "item": [
+            {
+              "name": "emitir",
+              "item": [
+                {
+                  "name": "Emite una póliza de auto.",
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"coberturaIds\": [\n    1,\n    2,\n    3\n  ],\n  \"vehiculo\": {\n    \"marca\": \"Toyota\",\n    \"modelo\": \"Corolla\",\n    \"placa\": \"M123456\",\n    \"anio\": 2022,\n    \"valorComercial\": 18500\n  },\n  \"clienteId\": 1\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/polizas/emitir",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "polizas",
+                        "emitir"
+                      ]
+                    },
+                    "description": "Recibe el cliente, los datos del vehículo y las coberturas elegidas.\r\n            \r\n**Reglas de negocio:**\r\n- La **PrimaTotal** se calcula en el servidor: suma de los montos de las coberturas seleccionadas.\r\n- La **SumaAsegurada** es el valor comercial del vehículo.\r\n- El **NumeroPoliza** se autogenera (formato POL-AAAA-000001).\r\n- Si la placa ya existe, se reutiliza el vehículo y se actualizan sus datos.\r\n- Los Ids de cobertura repetidos se consideran una sola vez.\r\n            \r\nEjemplo de solicitud:\r\n            \r\n    POST /api/polizas/emitir\r\n    {\r\n       \"clienteId\": 1,\r\n       \"vehiculo\": {\r\n          \"placa\": \"M123456\",\r\n          \"marca\": \"Toyota\",\r\n          \"modelo\": \"Corolla\",\r\n          \"anio\": 2022,\r\n          \"valorComercial\": 18500.00\r\n       },\r\n       \"coberturaIds\": [1, 2, 3]\r\n    }\r\n            \r\nCon ese ejemplo la prima total es 6000.00 (1500 + 2500 + 2000)."
+                  },
+                  "response": [
+                    {
+                      "name": "Póliza emitida. El encabezado Location apunta a su detalle.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"coberturaIds\": [\n    1,\n    2,\n    3\n  ],\n  \"vehiculo\": {\n    \"marca\": \"Toyota\",\n    \"modelo\": \"Corolla\",\n    \"placa\": \"M123456\",\n    \"anio\": 2022,\n    \"valorComercial\": 18500\n  },\n  \"clienteId\": 1\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/polizas/emitir",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "polizas",
+                            "emitir"
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"id\": 1,\n  \"numeroPoliza\": \"POL-2026-000001\",\n  \"fechaEmision\": \"2026-10-30T15:30:00Z\",\n  \"sumaAsegurada\": 18500,\n  \"primaTotal\": 6000,\n  \"cliente\": {\n    \"id\": 1,\n    \"nombre\": \"Juan Pérez\",\n    \"identificacion\": \"001-010190-0001A\",\n    \"correo\": \"juan.perez@correo.com\"\n  },\n  \"vehiculo\": {\n    \"id\": 1,\n    \"placa\": \"M123456\",\n    \"marca\": \"Toyota\",\n    \"modelo\": \"Corolla\",\n    \"anio\": 2022,\n    \"valorComercial\": 18500\n  },\n  \"coberturas\": [\n    {\n      \"id\": 1,\n      \"nombre\": \"Responsabilidad Civil\",\n      \"montoCobertura\": 1500\n    },\n    {\n      \"id\": 1,\n      \"nombre\": \"Responsabilidad Civil\",\n      \"montoCobertura\": 1500\n    }\n  ]\n}"
+                    },
+                    {
+                      "name": "Datos inválidos, lista de coberturas vacía, cobertura inexistente o año de vehículo futuro.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"coberturaIds\": [\n    1,\n    2,\n    3\n  ],\n  \"vehiculo\": {\n    \"marca\": \"Toyota\",\n    \"modelo\": \"Corolla\",\n    \"placa\": \"M123456\",\n    \"anio\": 2022,\n    \"valorComercial\": 18500\n  },\n  \"clienteId\": 1\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/polizas/emitir",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "polizas",
+                            "emitir"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 6857,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"key_0\": 3036.275652552409,\n  \"key_1\": 190.97379420138782\n}"
+                    },
+                    {
+                      "name": "El cliente indicado no existe.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"coberturaIds\": [\n    1,\n    2,\n    3\n  ],\n  \"vehiculo\": {\n    \"marca\": \"Toyota\",\n    \"modelo\": \"Corolla\",\n    \"placa\": \"M123456\",\n    \"anio\": 2022,\n    \"valorComercial\": 18500\n  },\n  \"clienteId\": 1\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/polizas/emitir",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "polizas",
+                            "emitir"
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 6857,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"key_0\": 3036.275652552409,\n  \"key_1\": 190.97379420138782\n}"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "{id}",
+              "item": [
+                {
+                  "name": "Consulta el detalle de una póliza emitida.",
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/polizas/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "polizas",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "2853",
+                          "description": "Identificador de la póliza."
+                        }
+                      ]
+                    },
+                    "description": "Incluye cliente, vehículo y coberturas con los montos vigentes al emitir."
+                  },
+                  "response": [
+                    {
+                      "name": "Póliza encontrada.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/polizas/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "polizas",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "2853",
+                              "description": "Identificador de la póliza."
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"id\": 1,\n  \"numeroPoliza\": \"POL-2026-000001\",\n  \"fechaEmision\": \"2026-10-30T15:30:00Z\",\n  \"sumaAsegurada\": 18500,\n  \"primaTotal\": 6000,\n  \"cliente\": {\n    \"id\": 1,\n    \"nombre\": \"Juan Pérez\",\n    \"identificacion\": \"001-010190-0001A\",\n    \"correo\": \"juan.perez@correo.com\"\n  },\n  \"vehiculo\": {\n    \"id\": 1,\n    \"placa\": \"M123456\",\n    \"marca\": \"Toyota\",\n    \"modelo\": \"Corolla\",\n    \"anio\": 2022,\n    \"valorComercial\": 18500\n  },\n  \"coberturas\": [\n    {\n      \"id\": 1,\n      \"nombre\": \"Responsabilidad Civil\",\n      \"montoCobertura\": 1500\n    },\n    {\n      \"id\": 1,\n      \"nombre\": \"Responsabilidad Civil\",\n      \"montoCobertura\": 1500\n    }\n  ]\n}"
+                    },
+                    {
+                      "name": "No existe una póliza con ese Id.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/polizas/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "polizas",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "2853",
+                              "description": "Identificador de la póliza."
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 6857,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"key_0\": 3036.275652552409,\n  \"key_1\": 190.97379420138782\n}"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Historial de todas las pólizas emitidas.",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/polizas",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "polizas"
+                  ]
+                },
+                "description": "Ordenadas de la más reciente a la más antigua."
+              },
+              "response": [
+                {
+                  "name": "Lista de pólizas (puede estar vacía).",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/polizas",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "polizas"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "[\n  {\n    \"id\": 1,\n    \"numeroPoliza\": \"POL-2026-000001\",\n    \"fechaEmision\": \"2026-10-30T15:30:00Z\",\n    \"sumaAsegurada\": 18500,\n    \"primaTotal\": 6000,\n    \"cliente\": {\n      \"id\": 1,\n      \"nombre\": \"Juan Pérez\",\n      \"identificacion\": \"001-010190-0001A\",\n      \"correo\": \"juan.perez@correo.com\"\n    },\n    \"vehiculo\": {\n      \"id\": 1,\n      \"placa\": \"M123456\",\n      \"marca\": \"Toyota\",\n      \"modelo\": \"Corolla\",\n      \"anio\": 2022,\n      \"valorComercial\": 18500\n    },\n    \"coberturas\": [\n      {\n        \"id\": 1,\n        \"nombre\": \"Responsabilidad Civil\",\n        \"montoCobertura\": 1500\n      },\n      {\n        \"id\": 1,\n        \"nombre\": \"Responsabilidad Civil\",\n        \"montoCobertura\": 1500\n      }\n    ]\n  },\n  {\n    \"id\": 1,\n    \"numeroPoliza\": \"POL-2026-000001\",\n    \"fechaEmision\": \"2026-10-30T15:30:00Z\",\n    \"sumaAsegurada\": 18500,\n    \"primaTotal\": 6000,\n    \"cliente\": {\n      \"id\": 1,\n      \"nombre\": \"Juan Pérez\",\n      \"identificacion\": \"001-010190-0001A\",\n      \"correo\": \"juan.perez@correo.com\"\n    },\n    \"vehiculo\": {\n      \"id\": 1,\n      \"placa\": \"M123456\",\n      \"marca\": \"Toyota\",\n      \"modelo\": \"Corolla\",\n      \"anio\": 2022,\n      \"valorComercial\": 18500\n    },\n    \"coberturas\": [\n      {\n        \"id\": 1,\n        \"nombre\": \"Responsabilidad Civil\",\n        \"montoCobertura\": 1500\n      },\n      {\n        \"id\": 1,\n        \"nombre\": \"Responsabilidad Civil\",\n        \"montoCobertura\": 1500\n      }\n    ]\n  }\n]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}
